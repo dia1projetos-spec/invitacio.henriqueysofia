@@ -1,57 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
-  <meta name="theme-color" content="#04090f"/>
-  <title>Henrique &amp; Sofia · 24 de Abril</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/style.css"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+<meta name="theme-color" content="#030911"/>
+<title>Henrique &amp; Sofia · 24 de Abril 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600&family=Cinzel:wght@400;600&family=Jost:wght@200;300;400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     INTRO: PLANE ANIMATION
-══════════════════════════════════════ -->
-<div id="intro">
-  <canvas id="intro-canvas"></canvas>
-</div>
+<!-- INTRO -->
+<div id="intro"><canvas id="intro-canvas"></canvas></div>
 
-<!-- ══════════════════════════════════════
-     MAIN INVITATION
-══════════════════════════════════════ -->
+<!-- MAIN -->
 <div id="main">
 
-  <!-- ── HERO ─────────────────────────── -->
+  <!-- ── HERO ───────────────────────── -->
   <section class="hero">
-    <img id="hero-img" class="hero__img" src="" alt="Henrique y Sofia"/>
-    <div class="hero__overlay"></div>
+    <img id="img-hero" class="hero__img" src="" alt="Henrique y Sofia"/>
+    <div class="hero__veil"></div>
     <div class="hero__content">
       <span class="hero__eyebrow">Nos casamos</span>
       <h1 class="hero__names">
         Henrique
-        <em>&amp;</em>
+        <span class="hero__amp">&amp;</span>
         Sofia
       </h1>
       <div class="hero__rule"></div>
       <p class="hero__date">Viernes · 24 de Abril · 2026</p>
-      <p class="hero__time">20:30 horas</p>
+      <p class="hero__time">20 : 30 horas</p>
     </div>
-    <div class="hero__scroll">
+    <div class="hero__arrow">
       <span>Deslizá</span>
-      <div class="hero__scroll-line"></div>
+      <div class="hero__arrow-line"></div>
     </div>
   </section>
 
-  <!-- ── VERSE ─────────────────────────── -->
-  <div class="verse-wrap">
-    <div data-reveal data-delay="0">
-      <div class="verse-deco">
-        <span></span><i>✦</i><span></span>
-      </div>
-      <p class="verse-text">
+  <!-- ── VERSE ──────────────────────── -->
+  <div class="verse">
+    <div data-r data-delay="0">
+      <div class="verse__bar"><span></span><i>✦</i><span></span></div>
+      <p class="verse__text">
         Ponme como un sello sobre tu corazón,<br/>
         como una marca sobre tu brazo;<br/>
         porque fuerte es el amor como la muerte,<br/>
@@ -59,109 +51,147 @@
         Sus brasas son brasas de fuego,<br/>
         una llama divina.
       </p>
-      <p class="verse-ref">— Cantares 8:6</p>
+      <p class="verse__ref">— Cantares 8:6</p>
     </div>
   </div>
 
-  <!-- ── PHOTO ──────────────────────────── -->
-  <div class="collage">
-    <div class="photo-card" data-reveal data-delay="0">
-      <img id="photo2" src="" alt="Cataratas del Iguazú"/>
+  <!-- ── GALLERY ─────────────────────── -->
+  <div class="gallery-wrap">
+    <div data-r style="padding:0 20px 28px;max-width:520px;margin:0 auto;">
+      <span class="sec-eye">Nuestra historia</span>
     </div>
-    <p class="photo-caption" data-reveal data-delay="150">Cataratas del Iguazú · donde empezó todo</p>
+
+    <div id="gallery">
+
+      <div class="slide">
+        <img id="g1" src="" alt="Cataratas del Iguazú"/>
+        <p class="slide-caption">Cataratas del Iguazú · donde empezó todo</p>
+      </div>
+
+      <div class="slide">
+        <img id="g2" src="" alt="Nuestros nombres en la arena"/>
+        <p class="slide-caption">Sofía Cuello ♡ Henrique Siqueira</p>
+      </div>
+
+      <div class="slide">
+        <img id="g3" src="" alt="Juntos"/>
+        <p class="slide-caption">Juntos en cada aventura</p>
+      </div>
+
+      <div class="slide">
+        <img id="g4" src="" alt="Selfie"/>
+        <p class="slide-caption">Un amor que cruzó fronteras</p>
+      </div>
+
+      <div class="slide">
+        <img id="g5" src="" alt="Henrique con flores"/>
+        <p class="slide-caption">Siempre con flores para ella</p>
+      </div>
+
+      <div class="slide">
+        <img id="g6" src="" alt="Bienvenido a tu nuevo hogar"/>
+        <p class="slide-caption">Bienvenido a tu nuevo hogar, amor · Córdoba</p>
+      </div>
+
+      <div class="slide">
+        <img id="g7" src="" alt="Brasil y Argentina"/>
+        <p class="slide-caption">🇧🇷 Brasil &amp; 🇦🇷 Argentina · Un amor sin fronteras</p>
+      </div>
+
+    </div>
+
+    <div class="gallery-controls">
+      <button class="garrow" data-gdir="prev" aria-label="Anterior">&#8592;</button>
+      <div class="gdots">
+        <button class="gdot on" aria-label="1"></button>
+        <button class="gdot" aria-label="2"></button>
+        <button class="gdot" aria-label="3"></button>
+        <button class="gdot" aria-label="4"></button>
+        <button class="gdot" aria-label="5"></button>
+        <button class="gdot" aria-label="6"></button>
+        <button class="gdot" aria-label="7"></button>
+      </div>
+      <button class="garrow" data-gdir="next" aria-label="Siguiente">&#8594;</button>
+    </div>
   </div>
 
-  <!-- ── COUNTDOWN ────────────────────── -->
-  <div class="countdown-wrap">
-    <div data-reveal>
-      <span class="eyebrow">Faltan</span>
+  <!-- ── COUNTDOWN ───────────────────── -->
+  <div class="cd-wrap">
+    <div data-r>
+      <span class="sec-eye">Faltan</span>
       <div id="cd"></div>
     </div>
   </div>
 
-  <!-- ── DETAILS ────────────────────────── -->
-  <div style="background:var(--navy);padding:60px 0 0;">
-    <div style="max-width:520px;margin:0 auto;padding:0 20px;">
-      <span class="eyebrow" data-reveal>Los detalles</span>
+  <!-- ── DETAILS ─────────────────────── -->
+  <div class="bg-deep pad-section">
+    <div style="max-width:520px;margin:0 auto;padding:0;">
+      <span class="sec-eye" data-r>Los detalles</span>
     </div>
-    <div class="cards-wrap">
+    <div class="details-wrap" style="padding-top:0;">
 
-      <div class="card" data-reveal data-delay="0">
-        <span class="card-icon">💒</span>
-        <p class="card-label">Ceremonia Civil</p>
-        <p class="card-title">9 de Julio</p>
-        <p class="card-sub">Viernes 24 de Abril · 20:30 hs</p>
+      <div class="dcard" data-r data-delay="0">
+        <span class="dcard-icon">💒</span>
+        <p class="dcard-lbl">Ceremonia Civil</p>
+        <p class="dcard-title">9 de Julio</p>
+        <p class="dcard-sub">Viernes 24 de Abril · 20:30 hs</p>
       </div>
 
-      <div class="card" data-reveal data-delay="100">
-        <span class="card-icon">🍽️</span>
-        <p class="card-label">Celebración</p>
-        <p class="card-title">Restaurante La Curva</p>
-        <p class="card-sub">Mitre 553 · Nos encontramos allí para festejar juntos</p>
-      </div>
-
-      <div class="card" data-reveal data-delay="200">
-        <span class="card-icon">📅</span>
-        <p class="card-label">Fecha límite de confirmación</p>
-        <p class="card-title">22 de Abril</p>
-        <p class="card-sub">Aboná tu lugar antes del 22 de abril para confirmar asistencia</p>
+      <div class="dcard" data-r data-delay="80">
+        <span class="dcard-icon">📅</span>
+        <p class="dcard-lbl">Fecha límite</p>
+        <p class="dcard-title">Antes del 22 de Abril</p>
+        <p class="dcard-sub">Confirmá y abonás tu lugar antes del 22 de abril para asegurar tu presencia.</p>
       </div>
 
     </div>
   </div>
 
-  <!-- ── MAP ────────────────────────────── -->
-  <div style="background:var(--navy);padding:0 0 60px;">
-    <div class="map-wrap" data-reveal>
-      <div class="map-frame">
-        <iframe
-          src="https://maps.google.com/maps?q=Mitre+553,+Córdoba,+Argentina&output=embed"
-          allowfullscreen loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Restaurante La Curva, Mitre 553">
-        </iframe>
+  <!-- ── ADDRESS ──────────────────────── -->
+  <div class="bg-deep" style="padding:0 20px 60px;">
+    <div style="max-width:520px;margin:0 auto;">
+      <span class="sec-eye" data-r>Dónde nos encontramos</span>
+      <div class="address-box" data-r data-delay="50">
+        <span class="dcard-icon">🍽️</span>
+        <p class="address-name">Restaurante La Curva</p>
+        <p class="address-street">Mitre 553</p>
+        <p class="address-note">Ahí nos reunimos para festejar juntos este momento tan especial. ¡Te esperamos con el corazón abierto!</p>
       </div>
     </div>
   </div>
 
-  <!-- ── PRICING ────────────────────────── -->
-  <div style="background:var(--ink);padding:60px 0 20px;">
-    <div style="max-width:520px;margin:0 auto;padding:0 20px;">
-      <span class="eyebrow" data-reveal>Tarjeta de cortesía</span>
+  <!-- ── PRICING ──────────────────────── -->
+  <div class="bg-ink pad-section">
+    <div style="max-width:520px;margin:0 auto;padding:0 0 30px;">
+      <span class="sec-eye" data-r>Tarjeta de cortesía</span>
     </div>
-    <div class="pricing-wrap">
+    <div class="price-wrap" style="padding-top:0;">
 
-      <div class="pricing-row" data-reveal data-delay="0">
-        <div class="pricing-row-lbl">
-          Mayores
-          <small>Adultos</small>
-        </div>
-        <div class="pricing-row-val">$36.000</div>
+      <div class="price-row" data-r data-delay="0">
+        <div class="price-lbl">Mayores<small>Adultos</small></div>
+        <div class="price-val">$36.000</div>
       </div>
 
-      <div class="pricing-row" data-reveal data-delay="100">
-        <div class="pricing-row-lbl">
-          Niños
-          <small>5 a 10 años</small>
-        </div>
-        <div class="pricing-row-val">$21.000</div>
+      <div class="price-row" data-r data-delay="80">
+        <div class="price-lbl">Niños<small>5 a 10 años</small></div>
+        <div class="price-val">$21.000</div>
       </div>
 
-      <div class="pricing-notice" data-reveal data-delay="200">
-        <p>⏰ Por favor, aboná antes del <strong>22 de Abril</strong><br/>para confirmar tu lugar en la celebración.</p>
+      <div class="price-note" data-r data-delay="160">
+        <p>⏰ Aboná antes del <strong>22 de Abril</strong><br/>para confirmar tu lugar en la celebración.</p>
       </div>
 
     </div>
   </div>
 
-  <!-- ── FOOTER ─────────────────────────── -->
+  <!-- ── FOOTER ───────────────────────── -->
   <footer class="footer">
-    <div data-reveal>
-      <div class="footer__names">
+    <div data-r>
+      <p class="footer__names">
         <strong>Henrique</strong><br/>
-        <span style="font-size:0.55em;font-family:'Cinzel',serif;letter-spacing:0.3em;color:var(--gold);font-style:normal;">&amp;</span><br/>
+        <span style="font-family:'Cinzel',serif;font-size:.4em;letter-spacing:.3em;color:var(--gold);font-style:normal;">&amp;</span><br/>
         <strong>Sofia</strong>
-      </div>
+      </p>
       <div class="footer__heart">❤️</div>
       <p class="footer__sub">24 · ABRIL · 2026 · ARGENTINA</p>
     </div>
@@ -170,7 +200,7 @@
 </div><!-- /main -->
 
 <!-- Music button -->
-<button id="music-btn" aria-label="Música">
+<button id="mbtn" aria-label="Música">
   <div class="mbar"></div>
   <div class="mbar"></div>
   <div class="mbar"></div>
@@ -178,11 +208,16 @@
 
 <script src="js/assets.js"></script>
 <script>
-  // Inject base64 images and audio immediately
-  document.getElementById('hero-img').src = window.FOTO1;
-  document.getElementById('photo2').src = window.FOTO2;
-  // Override audio source in main.js
-  window.__AUDIO_SRC = window.MUSICA;
+// Inject photos immediately
+document.getElementById('img-hero').src = window.A_F1;
+document.getElementById('g1').src = window.A_F1;
+document.getElementById('g2').src = window.A_F2;
+document.getElementById('g3').src = window.A_F3;
+document.getElementById('g4').src = window.A_F4;
+document.getElementById('g5').src = window.A_F5;
+document.getElementById('g6').src = window.A_F6;
+document.getElementById('g7').src = window.A_F7;
+// music loaded as A_MUSIC in assets.js
 </script>
 <script src="js/intro.js"></script>
 <script src="js/main.js"></script>
