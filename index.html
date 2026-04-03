@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+  <meta name="theme-color" content="#04090f"/>
+  <title>Henrique &amp; Sofia · 24 de Abril</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     INTRO: PLANE ANIMATION
+══════════════════════════════════════ -->
+<div id="intro">
+  <canvas id="intro-canvas"></canvas>
+</div>
+
+<!-- ══════════════════════════════════════
+     MAIN INVITATION
+══════════════════════════════════════ -->
+<div id="main">
+
+  <!-- ── HERO ─────────────────────────── -->
+  <section class="hero">
+    <img id="hero-img" class="hero__img" src="" alt="Henrique y Sofia"/>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <span class="hero__eyebrow">Nos casamos</span>
+      <h1 class="hero__names">
+        Henrique
+        <em>&amp;</em>
+        Sofia
+      </h1>
+      <div class="hero__rule"></div>
+      <p class="hero__date">Viernes · 24 de Abril · 2026</p>
+      <p class="hero__time">20:30 horas</p>
+    </div>
+    <div class="hero__scroll">
+      <span>Deslizá</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ── VERSE ─────────────────────────── -->
+  <div class="verse-wrap">
+    <div data-reveal data-delay="0">
+      <div class="verse-deco">
+        <span></span><i>✦</i><span></span>
+      </div>
+      <p class="verse-text">
+        Ponme como un sello sobre tu corazón,<br/>
+        como una marca sobre tu brazo;<br/>
+        porque fuerte es el amor como la muerte,<br/>
+        y la pasión es firme como el sepulcro.<br/>
+        Sus brasas son brasas de fuego,<br/>
+        una llama divina.
+      </p>
+      <p class="verse-ref">— Cantares 8:6</p>
+    </div>
+  </div>
+
+  <!-- ── PHOTO ──────────────────────────── -->
+  <div class="collage">
+    <div class="photo-card" data-reveal data-delay="0">
+      <img id="photo2" src="" alt="Cataratas del Iguazú"/>
+    </div>
+    <p class="photo-caption" data-reveal data-delay="150">Cataratas del Iguazú · donde empezó todo</p>
+  </div>
+
+  <!-- ── COUNTDOWN ────────────────────── -->
+  <div class="countdown-wrap">
+    <div data-reveal>
+      <span class="eyebrow">Faltan</span>
+      <div id="cd"></div>
+    </div>
+  </div>
+
+  <!-- ── DETAILS ────────────────────────── -->
+  <div style="background:var(--navy);padding:60px 0 0;">
+    <div style="max-width:520px;margin:0 auto;padding:0 20px;">
+      <span class="eyebrow" data-reveal>Los detalles</span>
+    </div>
+    <div class="cards-wrap">
+
+      <div class="card" data-reveal data-delay="0">
+        <span class="card-icon">💒</span>
+        <p class="card-label">Ceremonia Civil</p>
+        <p class="card-title">9 de Julio</p>
+        <p class="card-sub">Viernes 24 de Abril · 20:30 hs</p>
+      </div>
+
+      <div class="card" data-reveal data-delay="100">
+        <span class="card-icon">🍽️</span>
+        <p class="card-label">Celebración</p>
+        <p class="card-title">Restaurante La Curva</p>
+        <p class="card-sub">Mitre 553 · Nos encontramos allí para festejar juntos</p>
+      </div>
+
+      <div class="card" data-reveal data-delay="200">
+        <span class="card-icon">📅</span>
+        <p class="card-label">Fecha límite de confirmación</p>
+        <p class="card-title">22 de Abril</p>
+        <p class="card-sub">Aboná tu lugar antes del 22 de abril para confirmar asistencia</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── MAP ────────────────────────────── -->
+  <div style="background:var(--navy);padding:0 0 60px;">
+    <div class="map-wrap" data-reveal>
+      <div class="map-frame">
+        <iframe
+          src="https://maps.google.com/maps?q=Mitre+553,+Córdoba,+Argentina&output=embed"
+          allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Restaurante La Curva, Mitre 553">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PRICING ────────────────────────── -->
+  <div style="background:var(--ink);padding:60px 0 20px;">
+    <div style="max-width:520px;margin:0 auto;padding:0 20px;">
+      <span class="eyebrow" data-reveal>Tarjeta de cortesía</span>
+    </div>
+    <div class="pricing-wrap">
+
+      <div class="pricing-row" data-reveal data-delay="0">
+        <div class="pricing-row-lbl">
+          Mayores
+          <small>Adultos</small>
+        </div>
+        <div class="pricing-row-val">$36.000</div>
+      </div>
+
+      <div class="pricing-row" data-reveal data-delay="100">
+        <div class="pricing-row-lbl">
+          Niños
+          <small>5 a 10 años</small>
+        </div>
+        <div class="pricing-row-val">$21.000</div>
+      </div>
+
+      <div class="pricing-notice" data-reveal data-delay="200">
+        <p>⏰ Por favor, aboná antes del <strong>22 de Abril</strong><br/>para confirmar tu lugar en la celebración.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── FOOTER ─────────────────────────── -->
+  <footer class="footer">
+    <div data-reveal>
+      <div class="footer__names">
+        <strong>Henrique</strong><br/>
+        <span style="font-size:0.55em;font-family:'Cinzel',serif;letter-spacing:0.3em;color:var(--gold);font-style:normal;">&amp;</span><br/>
+        <strong>Sofia</strong>
+      </div>
+      <div class="footer__heart">❤️</div>
+      <p class="footer__sub">24 · ABRIL · 2026 · ARGENTINA</p>
+    </div>
+  </footer>
+
+</div><!-- /main -->
+
+<!-- Music button -->
+<button id="music-btn" aria-label="Música">
+  <div class="mbar"></div>
+  <div class="mbar"></div>
+  <div class="mbar"></div>
+</button>
+
+<script src="js/assets.js"></script>
+<script>
+  // Inject base64 images and audio immediately
+  document.getElementById('hero-img').src = window.FOTO1;
+  document.getElementById('photo2').src = window.FOTO2;
+  // Override audio source in main.js
+  window.__AUDIO_SRC = window.MUSICA;
+</script>
+<script src="js/intro.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
