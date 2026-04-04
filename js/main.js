@@ -1,149 +1,109 @@
-(function(){
-'use strict';
-// ── MUSIC ────────────────────────────────────────────────────────────────
-let audio,started=false,playing=false;
-function initAudio(){
-  audio=new Audio(window.IMG_MUSIC||'musica.mp3');
-  audio.loop=true;audio.volume=0;
-}
-function fadeVol(t,ms){
-  const step=(t-audio.volume)/(ms/40);
-  const iv=setInterval(()=>{
-    audio.volume=Math.max(0,Math.min(1,audio.volume+step));
-    if(Math.abs(audio.volume-t)<.01){audio.volume=t;clearInterval(iv);}
-  },40);
-}
-function startMusic(){
-  if(started)return;started=true;
-  audio.play().then(()=>{playing=true;fadeVol(.72,2500);showMbtn();}).catch(()=>{started=false;});
-}
-function showMbtn(){const b=document.getElementById('mbtn');if(b)b.classList.add('on');}
-function toggleMusic(){
-  if(!started){startMusic();return;}
-  if(playing){fadeVol(0,600);setTimeout(()=>{audio.pause();playing=false;upMbtn();},600);}
-  else{audio.play();playing=true;fadeVol(.72,700);upMbtn();}
-}
-function upMbtn(){const b=document.getElementById('mbtn');if(b)b.classList.toggle('muted',!playing);}
+// AUDIO
+let audio, musicStarted = false;
 
-// Watch for intro ending → try auto-play
-function watchIntro(){
-  const m=document.getElementById('main');if(!m)return;
-  const ob=new MutationObserver(()=>{
-    if(m.classList.contains('in')){ob.disconnect();setTimeout(startMusic,500);}
-  });
-  ob.observe(m,{attributes:true,attributeFilter:['class']});
-}
-// First scroll → music
-let sf=false;
-function onScroll(){if(sf)return;sf=true;startMusic();}
-// First tap/click fallback
-document.addEventListener('click',()=>startMusic(),{once:true,passive:true});
-document.addEventListener('touchstart',()=>startMusic(),{once:true,passive:true});
-
-// ── GALLERY ──────────────────────────────────────────────────────────────
-function initGallery(){
-  const wrap=document.getElementById('gallery');
-  if(!wrap)return;
-  const slides=wrap.querySelectorAll('.gslide');
-  const dots=document.querySelectorAll('.gdot');
-  let cur=0,locked=false;
-
-  function activate(n){
-    if(locked)return;locked=true;
-    const prev=cur;
-    cur=(n+slides.length)%slides.length;
-
-    slides[prev].classList.remove('active');
-    slides[prev].classList.add('exit');
-    slides[cur].classList.add('entering');
-
-    requestAnimationFrame(()=>requestAnimationFrame(()=>{
-      slides[cur].classList.add('active');
-      slides[cur].classList.remove('entering');
-    }));
-
-    setTimeout(()=>{
-      slides[prev].classList.remove('exit');
-      locked=false;
-    },1100);
-
-    dots.forEach((d,i)=>d.classList.toggle('on',i===cur));
+function ga() {
+  if (!audio) {
+    audio = document.getElementById('wa');
+    if (audio) { audio.loop = true; audio.volume = 0.6; }
   }
-
-  // Auto-advance with pause on interaction
-  let auto=setInterval(()=>activate(cur+1),5000);
-  function resetAuto(){clearInterval(auto);auto=setInterval(()=>activate(cur+1),5000);}
-
-  // Touch swipe
-  let tx=0;
-  wrap.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
-  wrap.addEventListener('touchend',e=>{
-    const dx=e.changedTouches[0].clientX-tx;
-    if(Math.abs(dx)>45){activate(dx<0?cur+1:cur-1);resetAuto();}
-  },{passive:true});
-
-  // Arrows
-  document.querySelectorAll('[data-gd]').forEach(b=>{
-    b.addEventListener('click',()=>{activate(cur+(b.dataset.gd==='n'?1:-1));resetAuto();});
-  });
-  // Dots
-  dots.forEach((d,i)=>d.addEventListener('click',()=>{activate(i);resetAuto();}));
-
-  // Init first
-  slides[0].classList.add('active');
+  return audio;
 }
 
-// ── SCROLL REVEAL ────────────────────────────────────────────────────────
-function initReveal(){
-  const els=document.querySelectorAll('[data-r]');
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        setTimeout(()=>e.target.classList.add('rev'),+(e.target.dataset.delay||0));
-        io.unobserve(e.target);
-      }
-    });
-  },{threshold:.08,rootMargin:'0px 0px -50px 0px'});
-  els.forEach(el=>io.observe(el));
+function startMusic() {
+  const a = ga(); if (!a || musicStarted) return;
+  a.play().catch(() => {});
+  musicStarted = true;
+  updateMusicUI();
 }
 
-// ── COUNTDOWN ────────────────────────────────────────────────────────────
-function initCd(){
-  const el=document.getElementById('cd');if(!el)return;
-  const tgt=new Date('2026-04-24T20:30:00-03:00');
-  function tick(){
-    const d=tgt-new Date();
-    if(d<=0){el.innerHTML='<span class="cdu"><b>¡Hoy!</b></span>';return;}
-    const days=Math.floor(d/86400000);
-    const h=Math.floor((d%86400000)/3600000);
-    const m=Math.floor((d%3600000)/60000);
-    const s=Math.floor((d%60000)/1000);
-    el.innerHTML=`
-      <span class="cdu"><b>${days}</b><small>días</small></span>
-      <span class="sep">:</span>
-      <span class="cdu"><b>${String(h).padStart(2,'0')}</b><small>hs</small></span>
-      <span class="sep">:</span>
-      <span class="cdu"><b>${String(m).padStart(2,'0')}</b><small>min</small></span>
-      <span class="sep">:</span>
-      <span class="cdu"><b>${String(s).padStart(2,'0')}</b><small>seg</small></span>`;
-  }
-  tick();setInterval(tick,1000);
+function toggleMusic(e) {
+  const a = ga(); if (!a) return;
+  if (e) e.stopPropagation();
+  a.paused ? a.play() : a.pause();
+  updateMusicUI();
 }
 
-// ── PARALLAX ─────────────────────────────────────────────────────────────
-function initParallax(){
-  const img=document.querySelector('.hero__bg');if(!img)return;
-  window.addEventListener('scroll',()=>{
-    img.style.transform=`scale(1.06) translateY(${window.scrollY*.28}px)`;
-  },{passive:true});
+function updateMusicUI() {
+  const a = ga();
+  const w = document.querySelector('.mwaves');
+  if (w && a) w.classList.toggle('paused', a.paused);
 }
 
-// ── INIT ─────────────────────────────────────────────────────────────────
-window.addEventListener('DOMContentLoaded',()=>{
-  initAudio();watchIntro();
-  window.addEventListener('scroll',onScroll,{once:true,passive:true});
-  window.addEventListener('touchmove',onScroll,{once:true,passive:true});
-  document.getElementById('mbtn')?.addEventListener('click',toggleMusic);
-  initGallery();initReveal();initCd();initParallax();
+document.addEventListener('click', () => startMusic());
+document.addEventListener('touchstart', () => startMusic(), { passive: true });
+
+// Ripple on click
+document.addEventListener('click', function(e) {
+  const r = document.createElement('div');
+  r.className = 'ripple';
+  r.style.left = e.clientX + 'px';
+  r.style.top = e.clientY + 'px';
+  document.body.appendChild(r);
+  setTimeout(() => r.remove(), 800);
 });
+
+// Music bar click
+document.addEventListener('DOMContentLoaded', function() {
+  const bar = document.getElementById('music-bar');
+  if (bar) bar.addEventListener('click', e => { e.stopPropagation(); musicStarted ? toggleMusic(e) : startMusic(); });
+});
+
+// LOADER
+window.addEventListener('load', function() {
+  setTimeout(() => {
+    const l = document.getElementById('loader');
+    if (l) { l.classList.add('fade-out'); setTimeout(() => l.style.display = 'none', 1400); }
+  }, 3500);
+});
+
+// REVEAL ON SCROLL
+function checkReveal() {
+  document.querySelectorAll('.reveal,.card,.ticket,.deadline').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight * 0.88) el.classList.add('visible');
+  });
+}
+window.addEventListener('scroll', checkReveal, { passive: true });
+setTimeout(checkReveal, 200);
+
+// PARALLAX
+window.addEventListener('scroll', function() {
+  const bg = document.querySelector('.hero-bg');
+  if (bg && window.scrollY < window.innerHeight) bg.style.transform = `scale(1.06) translateY(${window.scrollY * 0.22}px)`;
+}, { passive: true });
+
+// PARTICLES
+(function() {
+  const c = document.querySelector('.hero-particles'); if (!c) return;
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `left:${Math.random()*100}%;width:${Math.random()*3+2}px;height:${Math.random()*3+2}px;animation-duration:${Math.random()*10+8}s;animation-delay:${Math.random()*10}s`;
+    c.appendChild(p);
+  }
 })();
+
+// PETALS
+const petals = ['🌸','✨','🌺','⭐','🌼'];
+function mkPetal() {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.textContent = petals[Math.floor(Math.random()*petals.length)];
+  p.style.cssText = `left:${Math.random()*100}vw;animation-duration:${Math.random()*6+7}s;font-size:${Math.random()*.8+.6}rem`;
+  document.body.appendChild(p);
+  setTimeout(() => p.remove(), 14000);
+}
+setInterval(() => { if (musicStarted) mkPetal(); }, 3000);
+
+// COUNTDOWN
+function updateCD() {
+  const target = new Date('2025-04-24T20:30:00'), now = new Date();
+  let diff = target - now;
+  const pad = n => String(Math.max(0,n)).padStart(2,'0');
+  const set = (id,v) => { const el = document.getElementById(id); if (el) el.textContent = pad(v); };
+  if (diff <= 0) { ['cd-d','cd-h','cd-m','cd-s'].forEach(id => set(id,0)); return; }
+  set('cd-d', Math.floor(diff/86400000));
+  set('cd-h', Math.floor((diff%86400000)/3600000));
+  set('cd-m', Math.floor((diff%3600000)/60000));
+  set('cd-s', Math.floor((diff%60000)/1000));
+}
+updateCD(); setInterval(updateCD, 1000);
