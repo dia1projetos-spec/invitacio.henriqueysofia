@@ -1,38 +1,56 @@
-// AUDIO
-let audio, musicStarted = false;
+// ── AUDIO ──────────────────────────────────────────────────
+let audio = null;
+let musicStarted = false;
 
-function ga() {
-  if (!audio) {
-    audio = document.getElementById('wa');
-    if (audio) { audio.loop = true; audio.volume = 0.6; }
-  }
+function getAudio() {
+  if (!audio) audio = document.getElementById('wa');
   return audio;
 }
 
 function startMusic() {
-  const a = ga(); if (!a || musicStarted) return;
-  a.play().catch(() => {});
-  musicStarted = true;
-  updateMusicUI();
+  if (musicStarted) return;
+  const a = getAudio();
+  if (!a) return;
+  a.loop = true;
+  a.volume = 0.65;
+  const p = a.play();
+  if (p && typeof p.then === 'function') {
+    p.then(() => { musicStarted = true; updateMusicUI(); }).catch(() => {});
+  } else {
+    musicStarted = true;
+    updateMusicUI();
+  }
 }
 
 function toggleMusic(e) {
-  const a = ga(); if (!a) return;
   if (e) e.stopPropagation();
+  const a = getAudio();
+  if (!a) return;
   a.paused ? a.play() : a.pause();
   updateMusicUI();
 }
 
 function updateMusicUI() {
-  const a = ga();
+  const a = getAudio();
   const w = document.querySelector('.mwaves');
   if (w && a) w.classList.toggle('paused', a.paused);
 }
 
-document.addEventListener('click', () => startMusic());
-document.addEventListener('touchstart', () => startMusic(), { passive: true });
+// Try autoplay on load
+document.addEventListener('DOMContentLoaded', () => setTimeout(startMusic, 800));
 
-// Ripple on click
+// Retry on ANY gesture
+['click','touchstart','touchend','scroll','keydown','pointerdown'].forEach(evt =>
+  document.addEventListener(evt, startMusic, { passive: true })
+);
+
+// Music bar toggle
+document.addEventListener('DOMContentLoaded', function() {
+  const bar = document.getElementById('music-bar');
+  if (bar) bar.addEventListener('click', e => { e.stopPropagation(); !musicStarted ? startMusic() : toggleMusic(e); });
+});
+
+// Ripple
 document.addEventListener('click', function(e) {
   const r = document.createElement('div');
   r.className = 'ripple';
@@ -42,13 +60,7 @@ document.addEventListener('click', function(e) {
   setTimeout(() => r.remove(), 800);
 });
 
-// Music bar click
-document.addEventListener('DOMContentLoaded', function() {
-  const bar = document.getElementById('music-bar');
-  if (bar) bar.addEventListener('click', e => { e.stopPropagation(); musicStarted ? toggleMusic(e) : startMusic(); });
-});
-
-// LOADER
+// ── LOADER ──────────────────────────────────────────────────
 window.addEventListener('load', function() {
   setTimeout(() => {
     const l = document.getElementById('loader');
@@ -56,7 +68,7 @@ window.addEventListener('load', function() {
   }, 3500);
 });
 
-// REVEAL ON SCROLL
+// ── REVEALS ─────────────────────────────────────────────────
 function checkReveal() {
   document.querySelectorAll('.reveal,.card,.ticket,.deadline').forEach(el => {
     if (el.getBoundingClientRect().top < window.innerHeight * 0.88) el.classList.add('visible');
@@ -65,13 +77,14 @@ function checkReveal() {
 window.addEventListener('scroll', checkReveal, { passive: true });
 setTimeout(checkReveal, 200);
 
-// PARALLAX
+// ── PARALLAX ────────────────────────────────────────────────
 window.addEventListener('scroll', function() {
   const bg = document.querySelector('.hero-bg');
-  if (bg && window.scrollY < window.innerHeight) bg.style.transform = `scale(1.06) translateY(${window.scrollY * 0.22}px)`;
+  if (bg && window.scrollY < window.innerHeight)
+    bg.style.transform = `scale(1.06) translateY(${window.scrollY * 0.22}px)`;
 }, { passive: true });
 
-// PARTICLES
+// ── PARTICLES ───────────────────────────────────────────────
 (function() {
   const c = document.querySelector('.hero-particles'); if (!c) return;
   for (let i = 0; i < 18; i++) {
@@ -82,7 +95,7 @@ window.addEventListener('scroll', function() {
   }
 })();
 
-// PETALS
+// ── PETALS ──────────────────────────────────────────────────
 const petals = ['🌸','✨','🌺','⭐','🌼'];
 function mkPetal() {
   const p = document.createElement('div');
@@ -93,17 +106,3 @@ function mkPetal() {
   setTimeout(() => p.remove(), 14000);
 }
 setInterval(() => { if (musicStarted) mkPetal(); }, 3000);
-
-// COUNTDOWN
-function updateCD() {
-  const target = new Date('2025-04-24T20:30:00'), now = new Date();
-  let diff = target - now;
-  const pad = n => String(Math.max(0,n)).padStart(2,'0');
-  const set = (id,v) => { const el = document.getElementById(id); if (el) el.textContent = pad(v); };
-  if (diff <= 0) { ['cd-d','cd-h','cd-m','cd-s'].forEach(id => set(id,0)); return; }
-  set('cd-d', Math.floor(diff/86400000));
-  set('cd-h', Math.floor((diff%86400000)/3600000));
-  set('cd-m', Math.floor((diff%3600000)/60000));
-  set('cd-s', Math.floor((diff%60000)/1000));
-}
-updateCD(); setInterval(updateCD, 1000);
