@@ -1,53 +1,45 @@
-// ── AUDIO ──────────────────────────────────────────────────
-let audio = null;
-let musicStarted = false;
-
-function getAudio() {
-  if (!audio) audio = document.getElementById('wa');
-  return audio;
-}
-
-function startMusic() {
-  if (musicStarted) return;
-  const a = getAudio();
-  if (!a) return;
+// ── SPLASH → MUSIC (único gesto, garantido) ─────────────────
+function enterSite() {
+  const a = document.getElementById('wa');
   a.loop = true;
   a.volume = 0.65;
-  const p = a.play();
-  if (p && typeof p.then === 'function') {
-    p.then(() => { musicStarted = true; updateMusicUI(); }).catch(() => {});
-  } else {
-    musicStarted = true;
-    updateMusicUI();
-  }
+  // Play DIRETO no onclick — isso é um gesto de usuário, sempre funciona
+  a.play().then(() => {
+    updateMusicUI(a);
+  }).catch(() => {});
+
+  // Esconde splash
+  const splash = document.getElementById('splash');
+  splash.classList.add('gone');
+  setTimeout(() => splash.style.display = 'none', 1300);
+
+  // Mostra loader animado
+  const loader = document.getElementById('loader');
+  loader.style.display = 'flex';
+  setTimeout(() => {
+    loader.classList.add('fade-out');
+    setTimeout(() => loader.style.display = 'none', 1400);
+  }, 3200);
 }
 
-function toggleMusic(e) {
-  if (e) e.stopPropagation();
-  const a = getAudio();
-  if (!a) return;
-  a.paused ? a.play() : a.pause();
-  updateMusicUI();
-}
-
-function updateMusicUI() {
-  const a = getAudio();
+// ── MUSIC BAR TOGGLE ────────────────────────────────────────
+function updateMusicUI(a) {
   const w = document.querySelector('.mwaves');
+  if (!a) a = document.getElementById('wa');
   if (w && a) w.classList.toggle('paused', a.paused);
 }
 
-// Try autoplay on load
-document.addEventListener('DOMContentLoaded', () => setTimeout(startMusic, 800));
-
-// Retry on ANY gesture
-['click','touchstart','touchend','scroll','keydown','pointerdown'].forEach(evt =>
-  document.addEventListener(evt, startMusic, { passive: true })
-);
-
-// Music bar toggle
 document.addEventListener('DOMContentLoaded', function() {
   const bar = document.getElementById('music-bar');
-  if (bar) bar.addEventListener('click', e => { e.stopPropagation(); !musicStarted ? startMusic() : toggleMusic(e); });
+  if (bar) {
+    bar.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const a = document.getElementById('wa');
+      if (!a) return;
+      a.paused ? a.play() : a.pause();
+      updateMusicUI(a);
+    });
+  }
 });
 
 // Ripple
@@ -60,15 +52,7 @@ document.addEventListener('click', function(e) {
   setTimeout(() => r.remove(), 800);
 });
 
-// ── LOADER ──────────────────────────────────────────────────
-window.addEventListener('load', function() {
-  setTimeout(() => {
-    const l = document.getElementById('loader');
-    if (l) { l.classList.add('fade-out'); setTimeout(() => l.style.display = 'none', 1400); }
-  }, 3500);
-});
-
-// ── REVEALS ─────────────────────────────────────────────────
+// ── SCROLL REVEALS ──────────────────────────────────────────
 function checkReveal() {
   document.querySelectorAll('.reveal,.card,.ticket,.deadline').forEach(el => {
     if (el.getBoundingClientRect().top < window.innerHeight * 0.88) el.classList.add('visible');
@@ -105,4 +89,7 @@ function mkPetal() {
   document.body.appendChild(p);
   setTimeout(() => p.remove(), 14000);
 }
-setInterval(() => { if (musicStarted) mkPetal(); }, 3000);
+setInterval(() => {
+  const a = document.getElementById('wa');
+  if (a && !a.paused) mkPetal();
+}, 3000);
