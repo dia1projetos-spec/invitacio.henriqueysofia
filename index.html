@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
-<meta name="theme-color" content="#030911"/>
+<meta name="theme-color" content="#020810"/>
 <title>Henrique &amp; Sofia · 24 de Abril 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -12,38 +12,46 @@
 </head>
 <body>
 
-<!-- INTRO -->
-<div id="intro"><canvas id="intro-canvas"></canvas></div>
+<!-- ══════════════════════════
+     INTRO ANIMATION
+══════════════════════════ -->
+<div id="intro">
+  <canvas id="ic"></canvas>
+</div>
 
-<!-- MAIN -->
+<!-- ══════════════════════════
+     MAIN INVITATION
+══════════════════════════ -->
 <div id="main">
 
-  <!-- ── HERO ───────────────────────── -->
+  <!-- ── HERO ──────────────── -->
   <section class="hero">
-    <img id="img-hero" class="hero__img" src="" alt="Henrique y Sofia"/>
+    <img id="hero-img" class="hero__bg" src="" alt="Henrique y Sofia"/>
     <div class="hero__veil"></div>
-    <div class="hero__content">
-      <span class="hero__eyebrow">Nos casamos</span>
+    <div class="hero__body">
+      <span class="hero__tag">Con amor, los invitamos</span>
       <h1 class="hero__names">
         Henrique
         <span class="hero__amp">&amp;</span>
         Sofia
       </h1>
-      <div class="hero__rule"></div>
+      <div class="hero__divider">
+        <span></span><i>✦</i><span></span>
+      </div>
       <p class="hero__date">Viernes · 24 de Abril · 2026</p>
       <p class="hero__time">20 : 30 horas</p>
     </div>
-    <div class="hero__arrow">
+    <div class="hero__scroll">
       <span>Deslizá</span>
-      <div class="hero__arrow-line"></div>
+      <div class="hero__scroll-bar"></div>
     </div>
   </section>
 
-  <!-- ── VERSE ──────────────────────── -->
+  <!-- ── VERSE ─────────────── -->
   <div class="verse">
     <div data-r data-delay="0">
-      <div class="verse__bar"><span></span><i>✦</i><span></span></div>
-      <p class="verse__text">
+      <div class="verse__orn"><span></span><i>✦</i><span></span></div>
+      <p class="verse__txt">
         Ponme como un sello sobre tu corazón,<br/>
         como una marca sobre tu brazo;<br/>
         porque fuerte es el amor como la muerte,<br/>
@@ -51,173 +59,199 @@
         Sus brasas son brasas de fuego,<br/>
         una llama divina.
       </p>
-      <p class="verse__ref">— Cantares 8:6</p>
+      <p class="verse__ref">— Cantares 8 : 6</p>
     </div>
   </div>
 
-  <!-- ── GALLERY ─────────────────────── -->
-  <div class="gallery-wrap">
-    <div data-r style="padding:0 20px 28px;max-width:520px;margin:0 auto;">
-      <span class="sec-eye">Nuestra historia</span>
-    </div>
+  <!-- ── GALLERY ───────────── -->
+  <div class="gallery-section">
+    <span class="gallery-eyebrow" data-r>Nuestra historia</span>
 
     <div id="gallery">
 
-      <div class="slide">
-        <img id="g1" src="" alt="Cataratas del Iguazú"/>
-        <p class="slide-caption">Cataratas del Iguazú · donde empezó todo</p>
+      <div class="gslide">
+        <img id="g1" src="" alt="Cataratas - un amor que nació mirándose"/>
+        <div class="gslide__caption">
+          <span class="gslide__caption-txt">Cataratas del Iguazú · donde todo empezó</span>
+          <span class="gslide__num">01 / 07</span>
+        </div>
       </div>
 
-      <div class="slide">
+      <div class="gslide">
         <img id="g2" src="" alt="Nuestros nombres en la arena"/>
-        <p class="slide-caption">Sofía Cuello ♡ Henrique Siqueira</p>
+        <div class="gslide__caption">
+          <span class="gslide__caption-txt">Sofía Cuello ♡ Henrique Siqueira · escritos en la arena</span>
+          <span class="gslide__num">02 / 07</span>
+        </div>
       </div>
 
-      <div class="slide">
-        <img id="g3" src="" alt="Juntos"/>
-        <p class="slide-caption">Juntos en cada aventura</p>
+      <div class="gslide">
+        <img id="g3" src="" alt="Juntos de noche"/>
+        <div class="gslide__caption">
+          <span class="gslide__caption-txt">Cada noche contigo es especial</span>
+          <span class="gslide__num">03 / 07</span>
+        </div>
       </div>
 
-      <div class="slide">
-        <img id="g4" src="" alt="Selfie"/>
-        <p class="slide-caption">Un amor que cruzó fronteras</p>
+      <div class="gslide">
+        <img id="g4" src="" alt="Selfie juntos"/>
+        <div class="gslide__caption">
+          <span class="gslide__caption-txt">Un amor que cruzó fronteras</span>
+          <span class="gslide__num">04 / 07</span>
+        </div>
       </div>
 
-      <div class="slide">
+      <div class="gslide">
         <img id="g5" src="" alt="Henrique con flores"/>
-        <p class="slide-caption">Siempre con flores para ella</p>
+        <div class="gslide__caption">
+          <span class="gslide__caption-txt">Siempre con flores para ella</span>
+          <span class="gslide__num">05 / 07</span>
+        </div>
       </div>
 
-      <div class="slide">
+      <div class="gslide">
         <img id="g6" src="" alt="Bienvenido a tu nuevo hogar"/>
-        <p class="slide-caption">Bienvenido a tu nuevo hogar, amor · Córdoba</p>
+        <div class="gslide__caption">
+          <span class="gslide__caption-txt">Bienvenido a casa, amor · Córdoba</span>
+          <span class="gslide__num">06 / 07</span>
+        </div>
       </div>
 
-      <div class="slide">
+      <div class="gslide">
         <img id="g7" src="" alt="Brasil y Argentina"/>
-        <p class="slide-caption">🇧🇷 Brasil &amp; 🇦🇷 Argentina · Un amor sin fronteras</p>
+        <div class="gslide__caption">
+          <span class="gslide__caption-txt">🇧🇷 Brasil &amp; 🇦🇷 Argentina · unidos para siempre</span>
+          <span class="gslide__num">07 / 07</span>
+        </div>
       </div>
 
-    </div>
+    </div><!-- /gallery -->
 
-    <div class="gallery-controls">
-      <button class="garrow" data-gdir="prev" aria-label="Anterior">&#8592;</button>
+    <div class="gallery-nav">
+      <button class="garr" data-gd="p" aria-label="Anterior">&#8592;</button>
       <div class="gdots">
-        <button class="gdot on" aria-label="1"></button>
-        <button class="gdot" aria-label="2"></button>
-        <button class="gdot" aria-label="3"></button>
-        <button class="gdot" aria-label="4"></button>
-        <button class="gdot" aria-label="5"></button>
-        <button class="gdot" aria-label="6"></button>
-        <button class="gdot" aria-label="7"></button>
+        <button class="gdot on"></button>
+        <button class="gdot"></button>
+        <button class="gdot"></button>
+        <button class="gdot"></button>
+        <button class="gdot"></button>
+        <button class="gdot"></button>
+        <button class="gdot"></button>
       </div>
-      <button class="garrow" data-gdir="next" aria-label="Siguiente">&#8594;</button>
+      <button class="garr" data-gd="n" aria-label="Siguiente">&#8594;</button>
     </div>
   </div>
 
-  <!-- ── COUNTDOWN ───────────────────── -->
-  <div class="cd-wrap">
+  <!-- ── STORY BAR ─────────── -->
+  <div class="story-bar">
+    <div class="story-bar__inner" data-r>
+      <p class="story-bar__quote">
+        Dos países, dos culturas,<br/>
+        <em>un mismo corazón.</em>
+      </p>
+      <p class="story-bar__sub">🇧🇷 São Paulo → 🇦🇷 Córdoba</p>
+    </div>
+  </div>
+
+  <!-- ── COUNTDOWN ─────────── -->
+  <div class="cd-section">
     <div data-r>
-      <span class="sec-eye">Faltan</span>
+      <span class="eye">Faltan</span>
       <div id="cd"></div>
     </div>
   </div>
 
-  <!-- ── DETAILS ─────────────────────── -->
-  <div class="bg-deep pad-section">
-    <div style="max-width:520px;margin:0 auto;padding:0;">
-      <span class="sec-eye" data-r>Los detalles</span>
+  <!-- ── DETAILS ───────────── -->
+  <div class="details-section">
+    <div class="mw centered" style="padding-bottom:30px;">
+      <span class="eye" data-r>Los detalles</span>
     </div>
-    <div class="details-wrap" style="padding-top:0;">
+    <div class="cards">
 
-      <div class="dcard" data-r data-delay="0">
-        <span class="dcard-icon">💒</span>
-        <p class="dcard-lbl">Ceremonia Civil</p>
-        <p class="dcard-title">9 de Julio</p>
-        <p class="dcard-sub">Viernes 24 de Abril · 20:30 hs</p>
+      <div class="card" data-r data-delay="0">
+        <span class="card__ico">💒</span>
+        <p class="card__lbl">Ceremonia Civil</p>
+        <p class="card__title">9 de Julio</p>
+        <p class="card__sub">Viernes 24 de Abril · 20 : 30 hs</p>
       </div>
 
-      <div class="dcard" data-r data-delay="80">
-        <span class="dcard-icon">📅</span>
-        <p class="dcard-lbl">Fecha límite</p>
-        <p class="dcard-title">Antes del 22 de Abril</p>
-        <p class="dcard-sub">Confirmá y abonás tu lugar antes del 22 de abril para asegurar tu presencia.</p>
+      <div class="card" data-r data-delay="80">
+        <span class="card__ico">📅</span>
+        <p class="card__lbl">Fecha límite de confirmación</p>
+        <p class="card__title">22 de Abril</p>
+        <p class="card__sub">Confirmá y abonás tu tarjeta antes del 22 de Abril para asegurar tu lugar en este momento tan especial.</p>
       </div>
 
-    </div>
-  </div>
-
-  <!-- ── ADDRESS ──────────────────────── -->
-  <div class="bg-deep" style="padding:0 20px 60px;">
-    <div style="max-width:520px;margin:0 auto;">
-      <span class="sec-eye" data-r>Dónde nos encontramos</span>
-      <div class="address-box" data-r data-delay="50">
-        <span class="dcard-icon">🍽️</span>
-        <p class="address-name">Restaurante La Curva</p>
-        <p class="address-street">Mitre 553</p>
-        <p class="address-note">Ahí nos reunimos para festejar juntos este momento tan especial. ¡Te esperamos con el corazón abierto!</p>
-      </div>
     </div>
   </div>
 
-  <!-- ── PRICING ──────────────────────── -->
-  <div class="bg-ink pad-section">
-    <div style="max-width:520px;margin:0 auto;padding:0 0 30px;">
-      <span class="sec-eye" data-r>Tarjeta de cortesía</span>
+  <!-- ── ADDRESS ───────────── -->
+  <div class="address-section">
+    <div class="mw centered" style="padding-bottom:24px;">
+      <span class="eye" data-r>Dónde festejamos</span>
     </div>
-    <div class="price-wrap" style="padding-top:0;">
+    <div class="address-card" data-r>
+      <span class="card__ico">🍽️</span>
+      <p class="address-card__name">Restaurante La Curva</p>
+      <p class="address-card__street">Mitre 553</p>
+      <p class="address-card__note">Allí nos reunimos para celebrar juntos este momento que tanto esperamos. ¡Te esperamos con el corazón lleno de alegría!</p>
+    </div>
+  </div>
 
-      <div class="price-row" data-r data-delay="0">
-        <div class="price-lbl">Mayores<small>Adultos</small></div>
-        <div class="price-val">$36.000</div>
+  <!-- ── PRICING ───────────── -->
+  <div class="pricing-section">
+    <div class="mw centered" style="padding-bottom:28px;">
+      <span class="eye" data-r>Tarjeta de cortesía</span>
+    </div>
+    <div class="pricing-cards">
+      <div class="prow" data-r data-delay="0">
+        <div class="prow__lbl">Mayores<small>Adultos</small></div>
+        <div class="prow__val">$ 36.000</div>
       </div>
-
-      <div class="price-row" data-r data-delay="80">
-        <div class="price-lbl">Niños<small>5 a 10 años</small></div>
-        <div class="price-val">$21.000</div>
+      <div class="prow" data-r data-delay="70">
+        <div class="prow__lbl">Niños<small>5 a 10 años</small></div>
+        <div class="prow__val">$ 21.000</div>
       </div>
-
-      <div class="price-note" data-r data-delay="160">
+      <div class="pnote" data-r data-delay="140">
         <p>⏰ Aboná antes del <strong>22 de Abril</strong><br/>para confirmar tu lugar en la celebración.</p>
       </div>
-
     </div>
   </div>
 
-  <!-- ── FOOTER ───────────────────────── -->
+  <!-- ── FOOTER ────────────── -->
   <footer class="footer">
     <div data-r>
       <p class="footer__names">
         <strong>Henrique</strong><br/>
-        <span style="font-family:'Cinzel',serif;font-size:.4em;letter-spacing:.3em;color:var(--gold);font-style:normal;">&amp;</span><br/>
+        <span style="font-family:'Cinzel',serif;font-size:.38em;letter-spacing:.3em;color:var(--gold);font-style:normal;display:block;line-height:3;">&amp;</span>
         <strong>Sofia</strong>
       </p>
       <div class="footer__heart">❤️</div>
+      <div class="footer__line"></div>
       <p class="footer__sub">24 · ABRIL · 2026 · ARGENTINA</p>
     </div>
   </footer>
 
 </div><!-- /main -->
 
-<!-- Music button -->
+<!-- Music btn -->
 <button id="mbtn" aria-label="Música">
-  <div class="mbar"></div>
-  <div class="mbar"></div>
-  <div class="mbar"></div>
+  <div class="mb"></div>
+  <div class="mb"></div>
+  <div class="mb"></div>
 </button>
 
 <script src="js/assets.js"></script>
 <script>
-// Inject photos immediately
-document.getElementById('img-hero').src = window.A_F1;
-document.getElementById('g1').src = window.A_F1;
-document.getElementById('g2').src = window.A_F2;
-document.getElementById('g3').src = window.A_F3;
-document.getElementById('g4').src = window.A_F4;
-document.getElementById('g5').src = window.A_F5;
-document.getElementById('g6').src = window.A_F6;
-document.getElementById('g7').src = window.A_F7;
-// music loaded as A_MUSIC in assets.js
+// Inject all photos
+document.getElementById('hero-img').src = window.IMG_F1;
+document.getElementById('g1').src = window.IMG_F1;
+document.getElementById('g2').src = window.IMG_F2;
+document.getElementById('g3').src = window.IMG_F3;
+document.getElementById('g4').src = window.IMG_F4;
+document.getElementById('g5').src = window.IMG_F5;
+document.getElementById('g6').src = window.IMG_F6;
+document.getElementById('g7').src = window.IMG_F7;
 </script>
 <script src="js/intro.js"></script>
 <script src="js/main.js"></script>
